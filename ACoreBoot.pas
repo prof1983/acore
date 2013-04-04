@@ -2,7 +2,7 @@
 @Abstract ACore
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.10.2009
-@LastMod 25.02.2013
+@LastMod 04.04.2013
 }
 unit ACoreBoot;
 
@@ -12,13 +12,15 @@ interface
 
 uses
   ABase,
-  ACollectionsMod,
   ADataMod,
-  APluginsExp, APluginsMod,
-  ARuntime, ARuntimeMod, ARuntimeExp,
+  APluginsExp,
+  APluginsMod,
+  ARuntimeExp,
+  ARuntimeMain,
   ASettingsMod,
   AStringsExp,
-  ASystemExp, ASystemMod,
+  ASystemExp,
+  ASystemMod,
   AUiMod,
   AUtilsMod;
 
@@ -38,8 +40,6 @@ implementation
 
 function ACore_Boot(): AError;
 begin
-  ARuntimeMod_Boot();
-  ACollectionsMod_Boot();
   ADataMod_Boot();
   APluginsMod_Boot();
   ASettingsMod_Boot();
@@ -51,13 +51,12 @@ end;
 
 function ACore_Fin(): AError;
 begin
-  ARuntimeMod_Fin();
-  Result := 0;
+  Result := ARuntime_Fin();
 end;
 
 function ACore_Init(): AError;
 begin
-  ARuntimeMod_Init();
+  ARuntime_Init();
   ASystemMod_Init();
   AUiMod_Init();
   APluginsMod_Init();
@@ -66,8 +65,7 @@ end;
 
 function ACore_Run(): AError;
 begin
-  ARuntime.Run();
-  Result := 0;
+  Result := ARuntime_Run();
 end;
 
 end.
