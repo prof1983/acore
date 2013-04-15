@@ -4,7 +4,7 @@
 @Created 30.10.2009
 @LastMod 04.04.2013
 }
-unit ACoreBoot;
+unit ACoreMain;
 
 interface
 
@@ -12,16 +12,23 @@ interface
 
 uses
   ABase,
+  ADataExp,
   ADataMod,
+  AEventsExp,
+  AEventsMod,
   APluginsExp,
   APluginsMod,
   ARuntimeExp,
   ARuntimeMain,
+  ASettingsExp,
   ASettingsMod,
   AStringsExp,
+  AStringsMod,
   ASystemExp,
   ASystemMod,
+  AUiExp,
   AUiMod,
+  AUtilsExp,
   AUtilsMod;
 
 // --- ACore ---
@@ -41,8 +48,10 @@ implementation
 function ACore_Boot(): AError;
 begin
   ADataMod_Boot();
+  AEventsMod_Boot();
   APluginsMod_Boot();
   ASettingsMod_Boot();
+  AStringsMod_Boot();
   ASystemMod_Boot();
   AUiMod_Boot();
   AUtilsMod_Boot();
